@@ -16,7 +16,7 @@ class CreateRoomImagesTable extends Migration
         Schema::create('room_images', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('room_id');
-            $table->char('link', 300);
+            $table->char('link', 255);
             $table->longText('description');
             $table->dateTime('created_at');
             $table->bigInteger('created_by');

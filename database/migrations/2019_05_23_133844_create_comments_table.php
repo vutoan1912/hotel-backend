@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('room_id');
             $table->bigInteger('user_id');
-            $table->char('title', 300);
+            $table->char('title', 255);
             $table->longText('comment');
             $table->dateTime('created_at');
             $table->bigInteger('created_by');

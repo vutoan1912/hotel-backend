@@ -1,16 +1,19 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
-    //
-    protected $table="room";
+    protected $table="rooms";
 
-    public $fillable = ['sender', 'phone', 'sms', 'otp', 'expire_time'];
+    public $fillable = ['name', 'image', 'description', 'content', 'rate', 'point', 'created_at', 'created_by'];
 
     public $timestamps = false;
 
+    public function roomImages()
+    {
+        return $this->hasMany('App\Models\RoomImages', 'room_id', 'id');
+    }
 }

@@ -8,7 +8,7 @@ class RoomImages extends Model
 {
     protected $table="room_images";
 
-    public $fillable = ['sender', 'phone', 'sms', 'otp', 'expire_time'];
+    public $fillable = ['room_id', 'link', 'description', 'created_at', 'created_by'];
 
     public $timestamps = false;
 }

@@ -19,3 +19,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('login', 'Auth\LoginController@login');
 Route::post('register', 'Auth\RegisterController@register');
+
+Route::post('upload', 'Upload\UploadController@upload');
+
+//About
+Route::post('about', 'Hotel\AboutController@data');
+Route::get('about', 'Hotel\AboutController@get');
+
+//Room
+Route::get('room', 'Hotel\RoomController@get');
+Route::get('room-detail', 'Hotel\RoomController@getById');
+Route::post('room', 'Hotel\RoomController@create');

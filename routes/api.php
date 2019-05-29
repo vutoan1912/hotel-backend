@@ -30,3 +30,8 @@ Route::get('about', 'Hotel\AboutController@get');
 Route::get('room', 'Hotel\RoomController@get');
 Route::get('room-detail', 'Hotel\RoomController@getById');
 Route::post('room', 'Hotel\RoomController@create');
+
+//News
+Route::get('news', 'Hotel\NewsController@get');
+Route::get('news-detail', 'Hotel\NewsController@getById');
+Route::post('news', 'Hotel\NewsController@create');

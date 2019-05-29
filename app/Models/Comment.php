@@ -8,7 +8,7 @@ class Comment extends Model
 {
     protected $table="comments";
 
-    public $fillable = ['sender', 'phone', 'sms', 'otp', 'expire_time'];
+    public $fillable = ['room_id', 'user_id', 'title', 'comment', 'created_at', 'created_by'];
 
     public $timestamps = false;
 }

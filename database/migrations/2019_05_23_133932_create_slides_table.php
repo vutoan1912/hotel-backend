@@ -17,12 +17,10 @@ class CreateSlidesTable extends Migration
             $table->bigIncrements('id');
             $table->char('name', 100);
             $table->char('image', 255);
-            $table->longText('description');
-            $table->longText('content');
-            $table->integer('rate');
-            $table->integer('point');
+            $table->longText('status');
             $table->dateTime('created_at');
             $table->bigInteger('created_by');
+            $table->dateTime('updated_at');
         });
     }
 

@@ -8,7 +8,7 @@ class News extends Model
 {
     protected $table="news";
 
-    public $fillable = ['sender', 'phone', 'sms', 'otp', 'expire_time'];
+    public $fillable = ['title', 'image', 'description', 'content', 'created_at', 'created_by'];
 
     public $timestamps = false;
 }

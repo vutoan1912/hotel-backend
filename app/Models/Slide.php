@@ -8,7 +8,7 @@ class Slide extends Model
 {
     protected $table="slides";
 
-    public $fillable = ['sender', 'phone', 'sms', 'otp', 'expire_time'];
+    public $fillable = ['name', 'image', 'status', 'created_at', 'created_by', 'updated_at'];
 
     public $timestamps = false;
 }

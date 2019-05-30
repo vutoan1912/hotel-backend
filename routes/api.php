@@ -19,7 +19,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('login', 'Auth\LoginController@login');
 Route::post('register', 'Auth\RegisterController@register');
+Route::post('authenticate', 'Auth\LoginController@authenticate');
+Route::post('register', 'Auth\RegisterController@register');
 
+//Upload
 Route::post('upload', 'Upload\UploadController@upload');
 
 //About
@@ -35,3 +38,8 @@ Route::post('room', 'Hotel\RoomController@create');
 Route::get('news', 'Hotel\NewsController@get');
 Route::get('news-detail', 'Hotel\NewsController@getById');
 Route::post('news', 'Hotel\NewsController@create');
+
+//Slide
+Route::post('slide', 'Upload\UploadSlideController@upload');
+Route::post('slide-set-status', 'Hotel\SlideController@set');
+Route::get('slide', 'Hotel\SlideController@get');

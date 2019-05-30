@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -68,5 +69,54 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function register(Request $request){
+
+        $params = $request->all();
+
+        $user = empty($params['user']) ? null : $params['user'];
+        $pass = empty($params['pass']) ? null : $params['pass'];
+        $email = empty($params['email']) ? null : $params['email'];
+        $phone = empty($params['phone']) ? null : $params['phone'];
+
+        if(is_null($user) || is_null($pass) || empty($user) || empty($pass)){
+            return [
+                'message' => 'data input null or empty. Require data username and password!',
+                'code' => 0
+            ];
+        }
+
+        if(is_null($email) || empty($email)){
+            return [
+                'message' => 'data input null or empty. Require data email!',
+                'code' => 0
+            ];
+        }
+
+        $model = User::where('name', $user)->first();
+        if($model){
+            return [
+                'message' => $user . ' is already exists on system',
+                'code' => 0
+            ];
+        }
+
+        $model = User::where('email', $email)->first();
+        if($model){
+            return [
+                'message' => $email . ' is already exists on system',
+                'code' => 0
+            ];
+        }
+
+        $entity = [
+            'name'      => $user,
+            'password'  => $pass,
+            'email'     => $email,
+            'phone'     => $phone
+        ];
+
+        return User::create($entity);
     }
 }

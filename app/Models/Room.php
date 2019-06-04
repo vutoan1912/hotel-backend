@@ -8,7 +8,7 @@ class Room extends Model
 {
     protected $table="rooms";
 
-    public $fillable = ['name', 'image', 'description', 'content', 'rate', 'point', 'created_at', 'created_by'];
+    public $fillable = ['name', 'image', 'description', 'content', 'rate', 'point', 'cost', 'link', 'reviews', 'created_at', 'created_by'];
 
     public $timestamps = false;
 

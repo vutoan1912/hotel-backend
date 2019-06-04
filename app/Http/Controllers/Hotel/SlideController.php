@@ -19,7 +19,7 @@ class SlideController extends Controller
                 'code' => 0
             ];
         }
-        Slide::where('id', $id)->update(['status' => $status]);
+        Slide::where('id', $id)->update(['status' => $status, 'updated_at' => date('Y-m-d H:i:s')]);
         return [
             'message' => 'update slide status success',
             'code' => 1
@@ -29,7 +29,7 @@ class SlideController extends Controller
     public function get(Request $request){
         $params = $request->all();
         $limit = empty($params['limit']) ? 3 : $params['limit'];
-        $result = Slide::where('status', 1)->orderBy('id', 'desc')->paginate($limit);
+        $result = Slide::where('status', 1)->orderBy('updated_at', 'desc')->paginate($limit);
         return $result;
     }
 }

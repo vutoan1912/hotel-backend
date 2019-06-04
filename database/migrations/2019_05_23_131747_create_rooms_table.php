@@ -21,6 +21,9 @@ class CreateRoomsTable extends Migration
             $table->longText('content');
             $table->integer('rate');
             $table->integer('point');
+            $table->integer('cost');
+            $table->char('link', 255);
+            $table->integer('reviews');
             $table->dateTime('created_at');
             $table->bigInteger('created_by');
         });

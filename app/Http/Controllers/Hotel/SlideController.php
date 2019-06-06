@@ -29,7 +29,11 @@ class SlideController extends Controller
     public function get(Request $request){
         $params = $request->all();
         $limit = empty($params['limit']) ? 3 : $params['limit'];
-        $result = Slide::where('status', 1)->orderBy('updated_at', 'desc')->paginate($limit);
+        $status = empty($params['status']) ? -1 : $params['status'];
+        if($status > -1)
+            $result = Slide::where('status', $status)->orderBy('updated_at', 'desc')->paginate($limit);
+        else
+            $result = Slide::orderBy('updated_at', 'desc')->paginate($limit);
         return $result;
     }
 }

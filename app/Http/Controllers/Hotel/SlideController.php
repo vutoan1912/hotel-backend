@@ -10,12 +10,18 @@ class SlideController extends Controller
 {
     public function set(Request $request){
         $params = $request->all();
-        $id = empty($params['id']) ? 0 : $params['id'];
-        $status = empty($params['status']) ? 0 : $params['status'];
+        $id = empty($params['id']) ? null : $params['id'];
+        $status = empty($params['status']) ? null : $params['status'];
 
         if(is_null($id) || empty($id)){
             return [
                 'message' => 'data input null or empty. Require data field id!',
+                'code' => 0
+            ];
+        }
+        if(is_null($status) || empty($status)){
+            return [
+                'message' => 'data input null or empty. Require data field status!',
                 'code' => 0
             ];
         }

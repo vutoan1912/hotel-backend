@@ -9,7 +9,8 @@ use App\Models\Slide;
 class SlideController extends Controller
 {
     public function set(Request $request){
-        $params = $request->all();
+        //$params = $request->all();
+        $params = json_decode($request->getContent(), true);
         $id = empty($params['id']) ? null : $params['id'];
         $status = empty($params['status']) ? null : $params['status'];
 

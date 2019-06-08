@@ -57,7 +57,8 @@ class LoginController extends Controller
                 'message' => 'login success',
                 'code' => 1,
                 'data' => [
-                    'name' => $model->name,
+                    'id'    => $model->id,
+                    'name'  => $model->name,
                     'email' => $model->email,
                     'phone' => $model->phone
                 ]

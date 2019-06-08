@@ -12,7 +12,7 @@ class SlideController extends Controller
         //$params = $request->all();
         $params = json_decode($request->getContent(), true);
         $id = empty($params['id']) ? null : $params['id'];
-        $status = empty($params['status']) ? null : $params['status'];
+        $status = is_null($params['status']) ? null : $params['status'];
 
         if(is_null($id) || empty($id)){
             return [
@@ -20,7 +20,7 @@ class SlideController extends Controller
                 'code' => 0
             ];
         }
-        if(is_null($status) || empty($status)){
+        if(is_null($status)){
             return [
                 'message' => 'data input null or empty. Require data field status!',
                 'code' => 0

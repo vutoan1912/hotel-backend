@@ -21,6 +21,7 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('register', 'Auth\RegisterController@register');
 Route::post('authenticate', 'Auth\LoginController@authenticate');
 Route::post('register', 'Auth\RegisterController@register');
+Route::post('login-social', 'Auth\LoginController@loginSocial');
 
 //Upload
 Route::post('upload', 'Upload\UploadController@upload');

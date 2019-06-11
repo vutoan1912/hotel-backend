@@ -41,17 +41,17 @@ class LoginController extends Controller
 
     public function authenticate(Request $request){
         $params = $request->all();
-        $user = empty($params['user']) ? null : $params['user'];
-        $pass = empty($params['pass']) ? null : $params['pass'];
+        $email  = empty($params['email']) ? null : $params['email'];
+        $pass   = empty($params['pass']) ? null : $params['pass'];
 
-        if(is_null($user) || is_null($pass) || empty($user) || empty($pass)){
+        if(is_null($email) || is_null($pass) || empty($email) || empty($pass)){
             return [
-                'message' => 'data input null or empty. Require data username and password!',
+                'message' => 'data input null or empty. Require data email and password!',
                 'code' => 0
             ];
         }
 
-        $model = User::where('name', $user)->where('password', $pass)->first();
+        $model = User::where('email', $email)->where('password', $pass)->first();
         if($model){
             return [
                 'message' => 'login success',
@@ -67,6 +67,58 @@ class LoginController extends Controller
             return [
                 'message' => 'Wrong username or password',
                 'code' => 0
+            ];
+        }
+
+    }
+
+    public function loginSocial(Request $request){
+        $params = $request->all();
+        $email  = empty($params['email']) ? null : $params['email'];
+        $name   = empty($params['name'])  ? null : $params['name'];
+
+        /*return [
+            'name'  => $name,
+            'email' => $email
+        ];*/
+
+        if(is_null($email) || is_null($name) || empty($email) || empty($name)){
+            return [
+                'message' => 'data input null or empty. Require data email and name!',
+                'code' => 0
+            ];
+        }
+
+        $model = User::where('email', $email)->first();
+        if($model){
+            return [
+                'message' => 'login success',
+                'code' => 1,
+                'data' => [
+                    'id'    => $model->id,
+                    'name'  => $model->name,
+                    'email' => $model->email,
+                    'phone' => $model->phone
+                ]
+            ];
+        }else{
+            $result = User::create([
+                'name'  => $name,
+                'email' => $email,
+                'pass'  => '',
+                'phone' => '',
+                'created_at' => date('Y-m-d H:i:s'),
+                'created_by' => 1
+            ]);
+            return [
+                'message' => 'login success',
+                'code' => 1,
+                'data' => [
+                    'id'    => $result->id,
+                    'name'  => $result->name,
+                    'email' => $result->email,
+                    'phone' => $result->phone
+                ]
             ];
         }
 
